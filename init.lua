@@ -147,7 +147,7 @@ local function define_highlight(group, color)
     vim.cmd(string.format([[
         augroup Custom%s
             autocmd!
-            autocmd VimEnter * hi %s guifg=%s
+            autocmd FileType * hi %s guifg=%s
         augroup END
     ]], group, group, color))
 end
@@ -161,6 +161,8 @@ define_highlight('JavascriptFunction', '#8c9397')
 define_highlight('Conditional', '#8c9397')
 define_highlight('Repeat', '#8c9397')
 define_highlight('Statement', '#8c9397')
+define_highlight('Import', '#8c9397')
+define_highlight('Include', '#8c9397')
 -- define_highlight('Function', '#8c9397')
 define_highlight('Constant', '#69b037')
 define_highlight('Error', '#ff0000')
@@ -170,7 +172,7 @@ define_highlight('Identifier', '#BFC5BF')
 define_highlight('Visual cterm=reverse', '#827f7f')
 
 -- Adding the same comment color in each theme
-define_highlight('Comment', '#2ea542')
+-- define_highlight('Comment', '#2ea542')
 
 -- Disable annoying match brackets and all the jazz
 vim.cmd([[
