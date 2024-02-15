@@ -141,137 +141,49 @@ vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
     end
 })
 
-vim.cmd([[
-	augroup CustomCommentCollor
-		autocmd!
-		autocmd VimEnter * hi Comment guifg=#555555
-	augroup END
-]])
+--ffdd33
 
-vim.cmd([[
-	augroup CustomStringColor
-		autocmd!
-		autocmd VimEnter * hi String guifg=#79bf46
-	augroup END
-]])
+local function define_highlight(group, color)
+    vim.cmd(string.format([[
+        augroup Custom%s
+            autocmd!
+            autocmd VimEnter * hi %s guifg=%s
+        augroup END
+    ]], group, group, color))
+end
 
-vim.cmd([[
-	augroup CustomKeywordColor
-		autocmd!
-		autocmd VimEnter * hi Keyword guifg=#ffdd33
-	augroup END
-]])
-
--- eg. let, var in js.
-vim.cmd([[
-	augroup CustomJSIdentifier
-		autocmd!
-		autocmd VimEnter * hi JavascriptIdentifier guifg=#ffdd33
-	augroup END
-]])
-
-vim.cmd([[
-	augroup CustomTypeColor
-		autocmd!
-		autocmd VimEnter * hi Type guifg=#8c9397
-	augroup END
-]])
-
-vim.cmd([[
-	augroup CustomFunctionColor
-		autocmd!
-		autocmd VimEnter * hi JavascriptFunction guifg=#ffdd33
-	augroup END
-]])
-
--- eg. if in js
-vim.cmd([[
-	augroup CustomCondition
-		autocmd!
-		autocmd VimEnter * hi Conditional guifg=#ffdd33
-	augroup END
-]])
-
--- eg. for in js.
-vim.cmd([[
-	augroup CustomRepeat
-		autocmd!
-		autocmd VimEnter * hi Repeat guifg=#ffdd33
-	augroup END
-]])
-
--- eg. return in js
-vim.cmd([[
-	augroup CustomStatement
-		autocmd!
-		autocmd VimEnter * hi Statement guifg=#ffdd33
-	augroup END
-]])
-
--- use this for all languages, it highlights function name as well in js.
---[[vim.cmd([[
-	augroup CustomFunctionColor
-		autocmd!
-		autocmd VimEnter * hi Function guifg=#ffdd33
-	augroup END
-]]--)
-
-vim.cmd([[
-	augroup CustomConstantColor
-		autocmd!
-		autocmd VimEnter * hi Constant guifg=#69b037
-	augroup END
-]])
-
-vim.cmd([[
-	augroup CustomErrorColor
-		autocmd!
-		autocmd VimEnter * hi Error guifg=#ff0000
-	augroup END
-]])
-
-vim.cmd([[
-	augroup CustomOperatorColor
-		autocmd!
-		autocmd VimEnter * hi Operator guifg=#BFC5BF
-	augroup END
-]])
-
-vim.cmd([[
-	augroup CustomSpecialColor
-		autocmd!
-		autocmd VimEnter * hi Special guifg=#EAE2B9
-	augroup END
-]])
-
-vim.cmd([[
-	augroup CustomIdentifierColor
-		autocmd!
-		autocmd VimEnter * hi Identifier guifg=#BFC5BF
-	augroup END
-]])
+define_highlight('Comment', '#555555')
+define_highlight('String', '#79bf46')
+define_highlight('Keyword', '#8c9397')
+define_highlight('JavascriptIdentifier', '#73858f')
+define_highlight('Type', '#618ca5')
+define_highlight('JavascriptFunction', '#8c9397')
+define_highlight('Conditional', '#8c9397')
+define_highlight('Repeat', '#8c9397')
+define_highlight('Statement', '#8c9397')
+-- define_highlight('Function', '#8c9397')
+define_highlight('Constant', '#69b037')
+define_highlight('Error', '#ff0000')
+define_highlight('Operator', '#BFC5BF')
+define_highlight('Special', '#EAE2B9')
+define_highlight('Identifier', '#BFC5BF')
+define_highlight('Visual cterm=reverse', '#827f7f')
 
 -- Adding the same comment color in each theme
-vim.cmd([[
-	augroup CustomCommentCollor
-		autocmd!
-		autocmd VimEnter * hi Comment guifg=#2ea542
-	augroup END
-]])
+define_highlight('Comment', '#2ea542')
 
--- Disable annoying match brackets and all the jaz
+-- Disable annoying match brackets and all the jazz
 vim.cmd([[
-	augroup CustomHI
-		autocmd!
-		autocmd VimEnter * NoMatchParen 
-	augroup END
-]])
-
+    augroup CustomHI
+        autocmd!
+        autocmd VimEnter * NoMatchParen
+    augroup END
+]])-- Disable annoying match brackets and all the jazz
 vim.cmd([[
-	augroup CustomVisualhighlight
-		autocmd!
-		autocmd VimEnter * highlight Visual cterm=reverse guibg=#827f7f
-	augroup END
+    augroup CustomHI
+        autocmd!
+        autocmd VimEnter * NoMatchParen
+    augroup END
 ]])
 
 vim.api.nvim_set_hl(0, "CmpNormal", { bg = "#504945" })
